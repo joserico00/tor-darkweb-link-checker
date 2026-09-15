@@ -1,0 +1,10 @@
+# docker-compose.yml
+version: '3'
+services:
+  tor:
+    image: dperson/torproxy
+    container_name: tor-socks
+    restart: unless-stopped
+    ports:
+      - "9050:9050"  # SOCKS5 proxy
+
