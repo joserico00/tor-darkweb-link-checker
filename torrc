@@ -1,0 +1,13 @@
+# Listen on the container's interfaces so Docker can publish the port.
+# docker-compose.yml binds that published port to 127.0.0.1, so the proxy stays
+# reachable from this machine only.
+SocksPort 0.0.0.0:9050
+
+# ... and inside the container, accept only Docker's own private networks.
+SocksPolicy accept 10.0.0.0/8
+SocksPolicy accept 172.16.0.0/12
+SocksPolicy accept 192.168.0.0/16
+SocksPolicy reject *
+
+DataDirectory /var/lib/tor
+Log notice stdout

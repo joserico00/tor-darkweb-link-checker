@@ -1,0 +1,4 @@
+# requests[socks] pulls in PySocks, without which socks5h:// proxies fail with
+# "Missing dependencies for SOCKS support".
+requests[socks]>=2.31
+beautifulsoup4>=4.12

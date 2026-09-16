@@ -6,3 +6,8 @@ __pycache__/
 node_modules/
 vendor/
 *.key
+
+# Produced by a run: the links already visited and the ones that matched.
+checked_links.txt
+matches_*.txt
+puertorico_matches.txt

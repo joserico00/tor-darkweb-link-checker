@@ -1,10 +1,18 @@
-# docker-compose.yml
-version: '3'
 services:
   tor:
-    image: dperson/torproxy
+    build: .
     container_name: tor-socks
     restart: unless-stopped
     ports:
-      - "9050:9050"  # SOCKS5 proxy
-
+      # Bound to loopback: the proxy is reachable from this machine only, not
+      # from anything else on the network.
+      - "127.0.0.1:9050:9050"
+    healthcheck:
+      # Healthy means Tor finished bootstrapping and a real request got through,
+      # so `docker compose up -d --wait` returns when the proxy is usable.
+      test: ["CMD", "curl", "-sf", "--socks5-hostname", "localhost:9050",
+             "https://check.torproject.org/api/ip"]
+      interval: 10s
+      timeout: 15s
+      retries: 12
+      start_period: 20s
