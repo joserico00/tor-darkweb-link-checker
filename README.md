@@ -103,3 +103,7 @@ The tests need neither Tor nor a network: a fake session serves canned pages, wh
 ## Author
 
 Jose E. Rodriguez Rios
+
+## License
+
+MIT — see [LICENSE](LICENSE).
